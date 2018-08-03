@@ -9,7 +9,6 @@ class Basket
   end
 
   def add_item(sku)
-    DbHelper.set_db
     @items << Item.find(sku)
   end
 

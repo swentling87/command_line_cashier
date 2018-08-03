@@ -1,9 +1,10 @@
+require_relative '../spec_helper'
 require_relative '../../models/basket'
 require_relative '../../helpers/db_helper'
 
 RSpec.describe Basket, type: :model do
   before(:each) do
-    DbHelper.set_db
+    DbHelper.set_test_db
   end
   let(:item) { Item.create(name: 'item_1', cost: 2) }
   
@@ -34,7 +35,13 @@ RSpec.describe Basket, type: :model do
   end
   
   describe '#total' do
-    it 'should return the total adjusted by promos' do
+    it 'should return the total adjusted by no promos' do
+      basket = Basket.new
+      basket.add_item(item.id)
+      expect(basket.total).to eq(2)
+    end
+    
+    it 'should return the total adjusted by a global promos' do
       basket = Basket.new
       basket.add_item(item.id)
       expect(basket.total).to eq(2)

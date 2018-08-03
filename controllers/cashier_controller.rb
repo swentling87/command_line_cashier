@@ -18,7 +18,7 @@ class CashierController
       padding: 3,
       border: :thick
     ) do
-      "Main Menu - Select an option.\n1 - View all items\n2 - Create new item\n3 - Scan Item\n4 - View Basket\n6 - Exit\n"
+      "Main Menu - Select an option.\n1 - View all items\n2 - Create new item\n3 - Destroy Item\n4 - Scan Item\n5 - View Basket\n6 - Exit\n"
     end
     puts box
     print "Enter your selection: "
@@ -38,9 +38,14 @@ class CashierController
     when 3
       system "clear"
       app_header
-      scan_item
+      destroy_item
       main_menu
     when 4
+      system "clear"
+      app_header
+      scan_item
+      main_menu
+    when 5
       system "clear"
       app_header
       view_basket
@@ -80,6 +85,20 @@ class CashierController
     puts "New item created!"
   end
   
+  def destroy_item
+    DbHelper.set_db
+    puts "Item to destroy"
+
+    print "SKU: "
+    sku = gets.chomp
+
+    Item.find(sku).destroy
+
+    system "clear"
+    app_header
+    puts "Item destroyed!"
+  end
+  
   def scan_item
     DbHelper.set_db
     puts "Please enter item SKU."
@@ -92,6 +111,7 @@ class CashierController
     if @basket.items.empty?
       puts "No items yet..."
     else
+      puts "Your current basket."
       @basket.view.each do |item|
         item.to_s
       end

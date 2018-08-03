@@ -11,4 +11,8 @@ module DbHelper
     ActiveRecord::Base.establish_connection(DbHelper.db_configuration["development"])
   end
   
+  def DbHelper.set_test_db
+    ActiveRecord::Base.establish_connection(DbHelper.db_configuration["test"])
+  end
+  
 end
