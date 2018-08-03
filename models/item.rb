@@ -8,12 +8,13 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+require 'active_record'
 
 class Item < ActiveRecord::Base
   has_many :item_promos
   
   def to_s
-    puts "Name: #{name} => £#{price}"
+    puts "   #{name} => £#{cost} SKU: #{id}\n"
   end
   
 end

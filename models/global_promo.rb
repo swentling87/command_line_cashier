@@ -5,6 +5,7 @@
 #  id       :bigint(8)        not null, primary key
 #  discount :integer
 #
+require 'active_record'
 
 class GlobalPromo < ActiveRecord::Base
 

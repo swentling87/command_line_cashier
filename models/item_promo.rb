@@ -6,6 +6,7 @@
 #  item_id  :bigint(8)
 #  discount :integer
 #
+require 'active_record'
 
 class ItemPromo < ActiveRecord::Base
   belongs_to :item

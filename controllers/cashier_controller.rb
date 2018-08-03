@@ -13,12 +13,12 @@ class CashierController
   def main_menu
     box = TTY::Box.frame(
       width: 100,
-      height: 10,
+      height: 15,
       align: :left,
       padding: 3,
       border: :thick
     ) do
-      "Main Menu - Select an option.\n1 - View all items\n6 - Exit\n"
+      "Main Menu - Select an option.\n1 - View all items\n2 - Create new item\n3 - Scan Item\n4 - View Basket\n6 - Exit\n"
     end
     puts box
     print "Enter your selection: "
@@ -27,11 +27,26 @@ class CashierController
     case selection
     when 1
       system "clear"
+      app_header
       view_all_entries
+      main_menu
+    when 2
+      system "clear"
+      app_header
+      create_item
+      main_menu
+    when 3
+      system "clear"
+      app_header
+      scan_item
+      main_menu
+    when 4
+      system "clear"
+      app_header
+      view_basket
       main_menu
     when 6
       puts "Good-bye!"
-    
       exit(0)
     else
       system "clear"
@@ -42,10 +57,67 @@ class CashierController
   
   def view_all_entries
     DbHelper.set_db
+    puts " Start of entries"
     Item.all.each do |item|
       item.to_s
     end
-    puts "End of entries"
+    puts " End of entries"
+  end
+  
+  def create_item
+    DbHelper.set_db
+    puts "New Item"
+
+    print "Name: "
+    name = gets.chomp
+    print "Cost: "
+    cost = gets.chomp
+
+    Item.create(name: name, cost: cost)
+
+    system "clear"
+    app_header
+    puts "New item created!"
+  end
+  
+  def scan_item
+    DbHelper.set_db
+    puts "Please enter item SKU."
+    print "SKU: "
+    sku = gets.chomp
+    @basket.add_item(sku)
+  end
+  
+  def view_basket
+    if @basket.items.empty?
+      puts "No items yet..."
+    else
+      @basket.view.each do |item|
+        item.to_s
+      end
+      puts "Total: £#{@basket.total}"
+    end
+  end
+  
+  def app_header
+    box = TTY::Box.frame(
+      width: 100,
+      height: 10,
+      align: :center,
+      padding: 3,
+      border: :thick,
+      style: {
+      fg: :bright_yellow,
+      bg: :blue,
+      border: {
+        fg: :bright_yellow,
+        bg: :blue
+      }
+    }
+    ) do
+      "Welcome to Checkout!"
+    end
+    puts box
   end
 
 end

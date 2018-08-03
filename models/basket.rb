@@ -1,3 +1,4 @@
+require_relative '../helpers/db_helper'
 require_relative 'item'
 
 class Basket
@@ -7,11 +8,20 @@ class Basket
     @items = []
   end
 
-  def add_item
-
+  def add_item(sku)
+    DbHelper.set_db
+    @items << Item.find(sku)
   end
 
   def remove_entry
+  end
+  
+  def view
+    @items
+  end
+  
+  def total
+    @items.pluck(:cost).sum
   end
   
   def checkout
