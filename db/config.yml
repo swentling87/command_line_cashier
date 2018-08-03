@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  database: cashier_dev
+  pool: 5
+  timeout: 5000
+  host: localhost
+
+development:
+  <<: *default
+  database: cashier_dev
+
+test: &test
+  <<: *default
+  database: cashier_test
+
+production:
+  <<: *default
+  database: cashier_prod
