@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_03_083133) do
+ActiveRecord::Schema.define(version: 2018_08_03_173851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2018_08_03_083133) do
   create_table "item_promos", force: :cascade do |t|
     t.bigint "item_id"
     t.integer "discount"
+    t.integer "min_quantity"
     t.index ["item_id"], name: "index_item_promos_on_item_id"
   end
 

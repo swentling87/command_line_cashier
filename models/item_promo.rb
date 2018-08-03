@@ -10,4 +10,8 @@ require 'active_record'
 
 class ItemPromo < ActiveRecord::Base
   belongs_to :item
+  
+  def to_s
+    puts "   Item SKU: #{item_id}, Minimum Quantity: #{min_quantity} => £#{discount}, ID: #{id}\n"
+  end
 end
