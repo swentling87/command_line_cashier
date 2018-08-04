@@ -25,7 +25,7 @@ class Basket
     item_id_array = @items.pluck(:id)
     item_counts = item_id_array.uniq.map{ |x| {item_id: x, count: item_id_array.count(x)} }
     item_counts.each do |item|
-      item_promos = ItemPromo.where("item_id = ? AND min_quantity >= ?", item[:item_id], item[:count]).pluck(:discount).sum
+      item_promos = ItemPromo.where("item_id = ? AND min_quantity <= ?", item[:item_id], item[:count]).pluck(:discount).sum
       total -= item_promos if item_promos
     end
       
