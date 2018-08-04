@@ -13,9 +13,6 @@ class Basket
   def add_item(sku)
     @items << Item.find(sku)
   end
-
-  def remove_item
-  end
   
   def view
     @items

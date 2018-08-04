@@ -113,7 +113,6 @@ class CashierController
       print "Cost: "
       cost = gets.chomp
       Item.create(name: name, cost: cost)
-
       system "clear"
       app_header
       puts "New item created!"
@@ -126,7 +125,6 @@ class CashierController
       print "SKU: "
       sku = gets.chomp
       Item.find(sku).destroy
-
       system "clear"
       app_header
       puts "Item destroyed!"
@@ -220,7 +218,6 @@ class CashierController
       print "ID: "
       id = gets.chomp
       ItemPromo.find(id).destroy
-
       system "clear"
       app_header
       puts "Item Promo destroyed!"
