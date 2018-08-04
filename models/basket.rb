@@ -14,7 +14,7 @@ class Basket
     @items << Item.find(sku)
   end
 
-  def remove_entry
+  def remove_item
   end
   
   def view

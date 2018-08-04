@@ -12,7 +12,7 @@ require 'active_record'
 class GlobalPromo < ActiveRecord::Base
 
   def to_s
-    puts "   Minimum Purchase:#{min_purchase} => £#{discount} ID: #{id}\n"
+    puts "   Minimum Purchase: #{min_purchase} => £#{discount} ID: #{id}\n"
   end
   
 end

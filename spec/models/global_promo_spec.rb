@@ -20,4 +20,12 @@ RSpec.describe GlobalPromo, type: :model do
     it { should respond_to(:min_purchase) }
   end
   
+  describe '#to_s' do
+    it "should return a string to display the global promo data" do
+      gp = GlobalPromo.create(discount: 10, min_purchase: 100)
+      expect(STDOUT).to receive(:puts).with("   Minimum Purchase: 100 => £10 ID: #{gp.id}\n")
+      gp.to_s
+    end
+  end
+  
 end

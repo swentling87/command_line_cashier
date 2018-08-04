@@ -227,6 +227,8 @@ class CashierController
     }
   end
   
+  private
+  
   def app_header
     box = TTY::Box.frame(
       width: 100,

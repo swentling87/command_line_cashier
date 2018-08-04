@@ -11,7 +11,7 @@
 require 'active_record'
 
 class Item < ActiveRecord::Base
-  has_many :item_promos
+  has_many :item_promos, dependent: :destroy
   
   def to_s
     puts "   #{name} => £#{cost} SKU: #{id}\n"

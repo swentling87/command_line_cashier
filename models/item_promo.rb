@@ -2,10 +2,12 @@
 #
 # Table name: item_promos
 #
-#  id       :bigint(8)        not null, primary key
-#  item_id  :bigint(8)
-#  discount :integer
+#  id           :bigint(8)        not null, primary key
+#  item_id      :bigint(8)
+#  discount     :integer
+#  min_quantity :integer
 #
+
 require 'active_record'
 
 class ItemPromo < ActiveRecord::Base

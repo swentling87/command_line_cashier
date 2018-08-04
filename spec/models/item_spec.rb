@@ -22,4 +22,12 @@ RSpec.describe Item, type: :model do
     it { should respond_to(:cost) }
   end
   
+  describe '#to_s' do
+    it "should return a string to display the global promo data" do
+      item = Item.create(name: "Tea", cost: 100)
+      expect(STDOUT).to receive(:puts).with("   Tea => £100 SKU: #{item.id}\n")
+      item.to_s
+    end
+  end
+  
 end
